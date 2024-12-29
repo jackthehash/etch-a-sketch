@@ -21,6 +21,7 @@ function newGrid() {
         for (let j = 0; j < num; j++) {
             const column = document.createElement("div");
             column.classList.add("square");
+            column.style.opacity = "0.1";
             row.appendChild(column);
         }
         container.appendChild(row);
@@ -28,16 +29,22 @@ function newGrid() {
     
     const square = document.querySelectorAll(".square");
     for (let i = 0; i < square.length; i++) {
-        square[i].addEventListener("mouseenter", () => square[i].style.backgroundColor = "blue");
-        square[i].addEventListener("mouseleave", () => square[i].style.backgroundColor = "white");
+        square[i].addEventListener("mouseenter", () => square[i].style.backgroundColor = randomColor());
+        square[i].addEventListener("mouseleave", () => {square[i].style.backgroundColor = "black";
+            if (square[i].style.opacity !== "1") {
+            square[i].style.opacity = String(Number(square[i].style.opacity) + 0.09);
+            }
+        });
     }
 }
+
 for (let i = 0; i < num; i++) {
     let row = document.createElement("div");
     row.classList.add("row");
     for (let j = 0; j < num; j++) {
         const column = document.createElement("div");
         column.classList.add("square");
+        column.style.opacity = "0.1";
         row.appendChild(column);
     }
     container.appendChild(row);
@@ -45,7 +52,22 @@ for (let i = 0; i < num; i++) {
 
 const square = document.querySelectorAll(".square");
 for (let i = 0; i < square.length; i++) {
-    square[i].addEventListener("mouseenter", () => square[i].style.backgroundColor = "blue");
-    square[i].addEventListener("mouseleave", () => square[i].style.backgroundColor = "white");
+    square[i].addEventListener("mouseenter", () => square[i].style.backgroundColor = randomColor());
+    square[i].addEventListener("mouseleave", () => {square[i].style.backgroundColor = "black";
+        if (square[i].style.opacity !== "1") {
+        square[i].style.opacity = String(Number(square[i].style.opacity) + 0.09);
+        }
+    });
 }
 
+function random() {
+    return Math.floor(Math.random() * 255);
+}
+
+function randomColor() {
+    return "rgb(" + random() + ", " + random() + ", " + random() + ")";
+}
+
+function dark() {
+
+}
